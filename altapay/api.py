@@ -99,7 +99,7 @@ class API(object):
         :rtype: :samp:`True` if a valid response is returned, otherwise
             :samp:`False`.
         """
-        return Resource.create_from_response(self.post('API/testConnection'))
+        return Resource.create_from_response(self.get('API/testConnection'))
 
     def _headers(self):
         return {

@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+1.5.5
++++++++++++++++++++++
+
+**Improvements**
+
+- Enforce the right HTTP methods on all API endpoints.
+
 1.5.4
 +++++++++++++++++++++
 
