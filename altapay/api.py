@@ -99,7 +99,7 @@ class API(object):
         :rtype: :samp:`True` if a valid response is returned, otherwise
             :samp:`False`.
         """
-        return Resource.create_from_response(self.post('API/testConnection'))
+        return Resource.create_from_response(self.get('API/testConnection'))
 
     def _headers(self):
         return {
@@ -170,7 +170,7 @@ class API(object):
 
     def post(self, resource, parameters={}, data={}, headers={}):
         """
-        Perform a POST HTTP requeste on a resource.
+        Perform a POST HTTP request on a resource.
 
         :arg resource: the resource to POST to
         :arg parameters: a dictionary of GET parameters for the resource
