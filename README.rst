@@ -11,7 +11,7 @@ This is an unofficial Python SDK for AltaPay (formerly Valitor/Pensio), https://
 
 Requirements
 ============
-- Python (3.6, 3.7, 3.8, 3.9)
+- Python (3.6 to 3.11)
 
 Other versions of Python may also be supported, but these are the only versions we test against.
 
@@ -42,7 +42,7 @@ First of all, install supported python versions by running below command
 
 .. code:: python
 
-    sudo add-apt-repository -y ppa:deadsnakes/ppa && sudo apt-get install -y python3.6 python3.7 python3.8 python3.9
+    sudo add-apt-repository -y ppa:deadsnakes/ppa && sudo apt-get install -y python3.6 python3.7 python3.8 python3.9 python3.10 python3.11
 
 For installing tox and all other dependencies run below commands
 
