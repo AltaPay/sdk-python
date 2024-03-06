@@ -1,6 +1,14 @@
 Change Log
 ----------
 
+1.5.6
++++++++++++++++++++++
+
+**Improvements**
+
+- Add support for API/getTerminals
+- Add support for Python version 3.10.x and 3.11.x
+
 1.5.5
 +++++++++++++++++++++
 
