@@ -8,9 +8,9 @@ class Terminals(Resource):
     @classmethod
     def __init__(self, api):
         """
-        :arg api: An API object which will be used for AltaPay communication.
+        Initialize the Terminal object by fetching terminals data from AltaPay.
 
-        :rtype: :py:class:`altapay.Terminals`
+        :arg api: An API object used for AltaPay communication.
         """
         response = api.get('API/getTerminals')['APIResponse']
 
@@ -23,4 +23,3 @@ class Terminals(Resource):
             self.terminals = terminals
         else:
             self.terminals = [terminals]
-            
