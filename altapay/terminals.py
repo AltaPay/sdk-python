@@ -18,7 +18,6 @@ class Terminals(Resource):
             terminals = response['Body']['Terminals']['Terminal']
         except KeyError:
             raise exceptions.ResourceNotFoundError('Terminals not found')
-        
         if isinstance(terminals, list):
             self.terminals = terminals
         else:

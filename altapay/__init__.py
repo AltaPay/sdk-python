@@ -16,6 +16,6 @@ from altapay.invoice import Invoice  # NOQA
 from altapay.payment import Payment  # NOQA
 from altapay.reservation import Reservation  # NOQA
 from altapay.resource import Resource  # NOQA
+from altapay.terminals import Terminals  # NOQA
 from altapay.transaction import Transaction  # NOQA
 from altapay.update_order import UpdateOrder  # NOQA
-from altapay.terminals import Terminals  # NOQA
