@@ -5,7 +5,6 @@ from altapay.resource import Resource
 
 
 class Terminals(Resource):
-    @classmethod
     def __init__(self, api):
         """
         Initialize the Terminal object by fetching terminals data from AltaPay.
