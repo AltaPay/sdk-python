@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+1.5.6
++++++++++++++++++++++
+
+**Improvements**
+
+- Add support for API/getTerminals
+
 1.5.5
 +++++++++++++++++++++
 

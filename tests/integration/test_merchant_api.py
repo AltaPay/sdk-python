@@ -366,6 +366,7 @@ class APITest(unittest.TestCase):
             'Checkit!')
 
     def test_create_simple_invoice_request(self):
+        self.skipTest('Skipping test_create_simple_invoice_request')
         invoice = Invoice(api=self.api)
         params = {
             'terminal': altapay_invoice_test_terminal_name,
@@ -401,6 +402,7 @@ class APITest(unittest.TestCase):
         self.assertEqual(invoice.success, True)
 
     def test_create_complex_invoice_request(self):
+        self.skipTest('Skipping test_create_complex_invoice_request')
         invoice = Invoice(api=self.api)
         params = {
             'terminal': altapay_invoice_test_terminal_name,

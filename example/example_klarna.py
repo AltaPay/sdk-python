@@ -10,33 +10,27 @@ Klarna test script.
 import sys, random
 
 # Update this with real path and uncomment before use, please
-# sys.path.append('/absolute_path_to/python-client-library')
+# sys.path.append('/absolute_path_to/sdk-python')
 
 
 #sdk path check
 sdkPathExists = False
 for path in sys.path:
-    if path.endswith("/python-client-library"):
+    if path.endswith("/sdk-python"):
         sdkPathExists=True
 if sdkPathExists is False:
-    print "Path to python-client-library does not exist, update your environment variable, or put sys.path.append('/absolute_path_to/python-cliend-library') before including altapay sdk modules"
+    print("Path to sdk-python does not exist, update your environment variable, or put sys.path.append('/absolute_path_to/sdk-python') before including altapay sdk modules") 
     sys.exit()
 
 from altapay import API, Payment
 
-
-
-# These lines are only necessary because we are using utf-8 characters in the billing address:
-reload(sys)
-sys.setdefaultencoding('utf8')
-
-api = API(mode='test',account='shop api', password='testpassword',  url='http://gateway.dev.earth.pensio.com/merchant/')
+api = API(mode='test',account='API Username', password='API Password',  url='https://testgateway.altapaysecure.com/merchant/')
 
 payment = Payment(api = api)
 
 params = {
 
-            'terminal': 'AltaPay Klarna DK',
+            'terminal': 'AltaPay Klarna DK', # Update terminal name
             'shop_orderid': 'Example_Klarna' + str(random.randint(1, 1000)),
             'amount': 5.5,
             'currency': 'DKK',
@@ -92,12 +86,12 @@ params = {
 payment.create(**params)
 
 if payment.success:
-    print "Success!"
+    print ("Success!")
     # Access the url below and use the social security number 0801363945 in the page form to complete the Klarna order
-    print payment.url
+    print (payment.url)
 else:
-    print "Error code: " + str(payment.error_code)
-    print "Error message: " + payment.error_message
+    print ("Error code: " + str(payment.error_code))
+    print ("Error message: " + payment.error_message)
 
 # All the data
 #print payment.__data__
