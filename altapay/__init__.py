@@ -1,5 +1,5 @@
 __title__ = 'altapay'
-__version__ = '1.5.6'
+__version__ = '1.5.7'
 __author__ = 'Coolshop.com'
 __license__ = 'MIT'
 __github_url__ = 'https://github.com/coolshop-com/AltaPay'
@@ -19,3 +19,4 @@ from altapay.resource import Resource  # NOQA
 from altapay.terminals import Terminals  # NOQA
 from altapay.transaction import Transaction  # NOQA
 from altapay.update_order import UpdateOrder  # NOQA
+from altapay.credit_card_wallet_initiate_app_payment import CreditCardWalletInitiateAppPayment  # NOQA

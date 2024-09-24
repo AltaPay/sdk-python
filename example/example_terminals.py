@@ -10,8 +10,7 @@ Terminals test script.
 import sys, random
 
 # Update this with real path and uncomment before use, please
-# sys.path.append('/absolute_path_to/sdk-python')
-
+# sys.path.append('/absolute_path_to/python-client-library')
 
 #sdk path check
 sdkPathExists = False
@@ -26,6 +25,6 @@ from altapay import API, Terminals
 
 api = API(mode='test',account='API username', password='API Password',  url='https://testgateway.altapaysecure.com/merchant/')
 
-response = Terminals(api = api)
+response=Terminals(api=api)
 
 print(response.terminals)

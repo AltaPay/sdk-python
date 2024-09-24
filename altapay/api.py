@@ -143,7 +143,7 @@ class API(object):
         raise exceptions.ResponseStatusError(
             'Response code not allowed: {status}'.format(status=status))
 
-    def get(self, resource, parameters={}, headers={}):
+    def get(self, resource, parameters={}, headers={}, isResourceUrl=False):
         """
         Perform a GET HTTP request on a resource.
 
@@ -163,8 +163,11 @@ class API(object):
                 subset of the allowed response codes.
 
         """
+        requestUrl = urljoin(self.url, resource)
+        if isResourceUrl:
+            requestUrl = resource
         return self._request(
-            urljoin(self.url, resource), 'GET',
+            requestUrl, 'GET',
             params=utils.http_build_query(parameters),
             headers=headers or self._headers())
 
