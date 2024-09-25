@@ -167,7 +167,7 @@ class API(object):
                 subset of the allowed response codes.
 
         """
-        
+
         if is_resource_url:
             request_url = resource
         else:
