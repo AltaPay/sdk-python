@@ -97,7 +97,7 @@ if payment.success:
     }
 
     mobileAppPayment=CreditCardWalletInitiateAppPayment(api=api)
-    response = mobileAppPayment.create(appUrl=payment.app_url, **data)
+    response = mobileAppPayment.create(app_url=payment.app_url, **data)
 
     print(response)
 else:

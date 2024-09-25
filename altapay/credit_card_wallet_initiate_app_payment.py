@@ -4,11 +4,12 @@ from altapay.resource import Resource
 
 
 class CreditCardWalletInitiateAppPayment(Resource):
-    def create(self, appUrl, **kwargs):
+    def create(self, app_url, **kwargs):
         """
         Create a payment request.
 
-        :arg appUrl: appURL returned in the response from the createPaymentRequest in the case of MobilePay or Vipps payment.
+        :arg app_url: Returned in the response from the createPaymentRequest
+            in the case of credit card wallet payment e.g. MobilePay or Vipps.
         :arg kwargs: used for remaining, optional, payment request
             parameters, see the AltaPay documentation for a full list.
             Note that you will need to use lists and dictionaries to map the
@@ -18,7 +19,6 @@ class CreditCardWalletInitiateAppPayment(Resource):
         """
 
         response = self.api.get(
-            resource=appUrl, parameters=kwargs, isResourceUrl=True)
+            resource=app_url, parameters=kwargs, is_resource_url=True)
         self.merge_response(response)
         return response['APIResponse']['Body']
-
