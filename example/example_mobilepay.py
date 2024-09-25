@@ -3,7 +3,7 @@
 
 """
 
-Klarna test script.
+MobilePay test script.
 
 """
 
