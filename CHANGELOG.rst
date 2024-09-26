@@ -1,6 +1,18 @@
 Change Log
 ----------
 
+1.5.7
++++++++++++++++++++++
+
+**Improvements**
+
+- Add new response property `AppUrl` for `createPaymentRequest`.
+- Add new resource `CreditCardWalletInitiateAppPayment` to initiate credit card wallet payment in APP for MobilePay & Vipps.
+
+**Bugfix**
+
+- Fix `__setattr__`` and `__getattr__`` methods in the Resource class, causing recursion issues when trying to set or access attributes like `self.terminals`.`
+
 1.5.6
 +++++++++++++++++++++
 

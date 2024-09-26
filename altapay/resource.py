@@ -52,7 +52,12 @@ class Resource(object):
             return super(Resource, self).__getattribute__(name)
 
     def __setattr__(self, name, value):
-        self.__data__[name] = value
+        # Special handling for core attributes
+        if name in ['__data__', '__header__', 'terminals', 'api']:
+            # Directly set in __dict__ to avoid recursion
+            self.__dict__[name] = value
+        else:
+            self.__data__[name] = value
 
     def __contains__(self, name):
         return name in self.__data__

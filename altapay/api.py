@@ -143,7 +143,7 @@ class API(object):
         raise exceptions.ResponseStatusError(
             'Response code not allowed: {status}'.format(status=status))
 
-    def get(self, resource, parameters={}, headers={}):
+    def get(self, resource, parameters={}, headers={}, is_resource_url=False):
         """
         Perform a GET HTTP request on a resource.
 
@@ -151,6 +151,10 @@ class API(object):
         :arg parameters: a dictionary of GET parameters for the resource
         :arg headers: optional headers. If specified, these will override the
             default headers.
+        :arg is_resource_url: optional parameter.
+            Checks if resource param is itself a URL.
+            If specified, the GET request will be sent
+            to the resource param URL as is.
 
         :returns:
             A response from the AltaPay service as a :samp:`dict`.
@@ -163,8 +167,14 @@ class API(object):
                 subset of the allowed response codes.
 
         """
+
+        if is_resource_url:
+            request_url = resource
+        else:
+            request_url = urljoin(self.url, resource)
+
         return self._request(
-            urljoin(self.url, resource), 'GET',
+            request_url, 'GET',
             params=utils.http_build_query(parameters),
             headers=headers or self._headers())
 
