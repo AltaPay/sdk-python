@@ -10,7 +10,34 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.9]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install legacy Python
+        run: |
+          sudo add-apt-repository -y ppa:deadsnakes/ppa
+          sudo apt-get update
+          sudo apt-get install -y python${{ matrix.python-version }} python${{ matrix.python-version }}-distutils
+          sudo update-alternatives --install /usr/bin/python python /usr/bin/python${{ matrix.python-version }} 1
+
+      - name: Install pip for legacy Python
+        run: |
+          curl -sS https://bootstrap.pypa.io/get-pip.py | sudo -H python${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: python${{ matrix.python-version }} -m pip install responses requests six isort flake8 nose tox
+
+      - name: Run tests
+        run: python${{ matrix.python-version }} -m tox
+
+  test:
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
