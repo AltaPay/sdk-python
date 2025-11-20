@@ -12,26 +12,40 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.6, 3.7, 3.9]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install legacy Python
+      # Install Python 3.6, 3.7, 3.9 from deadsnakes on Ubuntu 22.04
+      - name: Setup Python
         run: |
           sudo add-apt-repository -y ppa:deadsnakes/ppa
           sudo apt-get update
-          sudo apt-get install -y python${{ matrix.python-version }} python${{ matrix.python-version }}-distutils
-          sudo update-alternatives --install /usr/bin/python python /usr/bin/python${{ matrix.python-version }} 1
 
-      - name: Install pip for legacy Python
-        run: |
-          curl -sS https://bootstrap.pypa.io/get-pip.py | sudo -H python${{ matrix.python-version }}
+          # Install Python 3.6 (EOL - requires fallback)
+          sudo apt-get install -y python3.6 python3.6-distutils || true
+          curl -sS https://bootstrap.pypa.io/pip/3.6/get-pip.py | sudo -H python3.6
+
+          # Install Python 3.7 + 3.9 normally
+          sudo apt-get install -y python3.7 python3.7-distutils
+          sudo apt-get install -y python3.9 python3.9-distutils
+
+          # Set default python → python3.9 (needed by pip install)
+          sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.9 1
 
       - name: Install dependencies
-        run: python${{ matrix.python-version }} -m pip install responses requests six isort flake8 nose tox
+        run: |
+          python -m pip install --upgrade pip
+          pip install responses requests six isort flake8 nose tox
 
-      - name: Run tests
-        run: python${{ matrix.python-version }} -m tox
+      - name: Create config for integration tests
+        run: |
+          echo altapay_account="${{secrets.GATEWAYUSER}}" > __init__.py
+          echo altapay_password="${{secrets.GATEWAYPASS}}" >> __init__.py
+          echo altapay_url="${{secrets.GATEWAYURL}}/merchant/" >> __init__.py
+          echo altapay_test_terminal_name="${{secrets.CC_TERMINAL_NAME}}" >> __init__.py
+          echo altapay_invoice_test_terminal_name="${{ secrets.INVOICE_TERMINAL_NAME}}" >> __init__.py
+          echo altapay_contract_identifier="${{ secrets.GATEWAY_CONTRACT_IDENTIFIER }}" >> __init__.py
+        working-directory: tests/integration  
+
+      - name: Run tests with tox
+        run: tox
