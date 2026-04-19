@@ -3,8 +3,8 @@ import random
 import unittest
 from datetime import date
 
-from altapay import (API, Funding, FundingList, Invoice, Payment, Reservation,
-                     Transaction)
+from altapay import (API, CheckoutSession, Funding, FundingList, Invoice,
+                     Payment, Reservation, Transaction)
 from tests.integration import (altapay_account, altapay_contract_identifier,
                                altapay_invoice_test_terminal_name,
                                altapay_password, altapay_test_terminal_name,
@@ -22,13 +22,27 @@ class APITest(unittest.TestCase):
                        password=altapay_password,
                        url=altapay_url)
 
+    def create_checkout_session(self):
+        session = CheckoutSession(api=self.api)
+        session.create(
+            terminals=[altapay_test_terminal_name],
+            shop_orderid=generate_order_id(),
+            amount=1.00,
+            currency='EUR'
+        )
+        return session.session['id']
+
+    def test_create_checkout_session(self):
+        session_id = self.create_checkout_session()
+
     def test_create_payment_request(self):
         payment = Payment(api=self.api)
         params = {
             'terminal': altapay_test_terminal_name,
             'shop_orderid': generate_order_id(),
             'amount': 1.00,
-            'currency': 'EUR'
+            'currency': 'EUR',
+            'session_id': self.create_checkout_session()
         }
         self.assertEqual(payment.create(**params), True)
         self.assertIn('url', payment)
@@ -45,7 +59,8 @@ class APITest(unittest.TestCase):
             'agreement': {
                 'type': 'unscheduled',
                 'unscheduled_type': 'incremental'
-            }
+            },
+            'session_id': self.create_checkout_session()
         }
         self.assertEqual(payment.create(**params), True)
         self.assertIn('url', payment)
