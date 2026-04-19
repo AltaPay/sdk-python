@@ -33,7 +33,7 @@ class APITest(unittest.TestCase):
         return session.session['id']
 
     def test_create_checkout_session(self):
-        session_id = self.create_checkout_session()
+        self.create_checkout_session()
 
     def test_create_payment_request(self):
         payment = Payment(api=self.api)
