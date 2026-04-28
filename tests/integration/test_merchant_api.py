@@ -1,5 +1,5 @@
 import os
-import random
+import secrets
 import unittest
 from datetime import date
 
@@ -12,7 +12,7 @@ from tests.integration import (altapay_account, altapay_contract_identifier,
 
 
 def generate_order_id():
-    return 'Test_' + str(random.randint(1000, 999999)) + '_PY'
+    return 'Test_' + str(secrets.randbelow(999000) + 1000) + '_PY'
 
 
 class APITest(unittest.TestCase):
