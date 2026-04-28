@@ -10,8 +10,8 @@ __api_base_url__ = {
 
 from altapay.api import API  # NOQA
 from altapay.callback import Callback  # NOQA
-from altapay.checkout_session import CheckoutSession  # NOQA
 from altapay.chargeback import ChargebackEvent  # NOQA
+from altapay.checkout_session import CheckoutSession  # NOQA
 from altapay.credit_card_wallet_initiate_app_payment import \
     CreditCardWalletInitiateAppPayment  # NOQA
 from altapay.funding import CustomReport, Funding, FundingList  # NOQA
