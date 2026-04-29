@@ -1,5 +1,5 @@
-# AltaPay - Python SDK
-
+AltaPay - Python SDK
+============
 For integrating Python projects with the AltaPay gateway.
 
 Requirements
