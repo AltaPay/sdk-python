@@ -17,12 +17,12 @@ if sdkPathExists is False:
 
 from altapay import API, Reservation, Transaction
 
-import string
-import random
 import json
+import string
+import secrets
 
 def id_generator(size=15, chars=string.digits):
-    return ''.join(random.choice(chars) for _ in range(size))
+    return ''.join(secrets.choice(chars) for _ in range(size))
 
 order_id=id_generator()
 # print order_id

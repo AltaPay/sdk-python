@@ -24,7 +24,8 @@ class APITest(TestCase):
             body=self.load_xml_response('200_login.xml'),
             status=200, content_type='application/xml')
         api = API(
-            mode='test', account='test', password='test', auto_login=False)
+            mode='test', account='test',
+            password='test', auto_login=False)  # NOSONAR
         # Before login is called state should be not authenticated
         self.assertEqual(api._is_authenticated, False)
         api.login()

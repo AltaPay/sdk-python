@@ -7,8 +7,8 @@ MobilePay test script.
 
 """
 
+import secrets
 import sys
-import random
 
 # Update this with real path and uncomment before use, please
 # sys.path.append('/absolute_path_to/python-client-library')
@@ -31,7 +31,7 @@ payment = Payment(api=api)
 
 params = {
     'terminal': 'AltapPay MobilePay Terminal',  # Update terminal name
-    'shop_orderid': 'Example_MobilePay' + str(random.randint(1, 1000)),
+    'shop_orderid': 'Example_MobilePay' + str(secrets.randbelow(1000) + 1),
     'amount': 5.5,
     'currency': 'DKK',
     'type': 'payment',

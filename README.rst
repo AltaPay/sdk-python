@@ -1,13 +1,6 @@
-.. image:: https://travis-ci.org/coolshop-com/AltaPay.svg
-    :target: https://travis-ci.org/coolshop-com/AltaPay
-
-.. image:: https://codecov.io/github/coolshop-com/AltaPay/coverage.svg?branch=master
-    :target: https://codecov.io/github/coolshop-com/AltaPay?branch=master
-
-.. image:: https://img.shields.io/pypi/v/altapay.svg
-    :target: https://pypi.python.org/pypi/altapay
-
-This is an unofficial Python SDK for AltaPay (formerly Valitor/Pensio), https://altapay.com/. The SDK is maintained by Coolshop.com, https://www.coolshop.com/.
+AltaPay - Python SDK
+============
+For integrating Python projects with the AltaPay gateway.
 
 Requirements
 ============

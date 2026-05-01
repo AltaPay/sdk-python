@@ -7,7 +7,8 @@ Klarna test script.
 
 """
 
-import sys, random
+import secrets
+import sys
 
 # Update this with real path and uncomment before use, please
 # sys.path.append('/absolute_path_to/sdk-python')
@@ -31,7 +32,7 @@ payment = Payment(api = api)
 params = {
 
             'terminal': 'AltaPay Klarna DK', # Update terminal name
-            'shop_orderid': 'Example_Klarna' + str(random.randint(1, 1000)),
+            'shop_orderid': 'Example_Klarna' + str(secrets.randbelow(1000) + 1),
             'amount': 5.5,
             'currency': 'DKK',
             'type': 'payment',

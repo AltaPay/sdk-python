@@ -7,7 +7,7 @@ Terminals test script.
 
 """
 
-import sys, random
+import sys
 
 # Update this with real path and uncomment before use, please
 # sys.path.append('/absolute_path_to/python-client-library')

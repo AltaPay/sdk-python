@@ -1,6 +1,13 @@
 Change Log
 ----------
 
+1.5.8
++++++++++++++++++++++
+
+**Features**
+
+- Add support for `checkoutSession` API method.
+
 1.5.7
 +++++++++++++++++++++
 
